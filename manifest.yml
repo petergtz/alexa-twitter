@@ -1,0 +1,11 @@
+---
+applications:
+- name: alexa-twitter
+  memory: 64M
+  instances: 1
+  env:
+    GOVERSION: go1.12.5
+    GOPACKAGENAME: github.com/petergtz/alexa-twitter
+  stack: cflinuxfs3
+  buildpacks:
+  - https://github.com/cloudfoundry/go-buildpack.git
