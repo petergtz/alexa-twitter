@@ -1,7 +1,6 @@
 package main
 
 import (
-	"io/ioutil"
 	"net/http"
 	"os"
 	"strconv"
@@ -17,8 +16,8 @@ import (
 	"github.com/nicksnyder/go-i18n/v2/i18n"
 	. "github.com/nicksnyder/go-i18n/v2/i18n"
 	"github.com/petergtz/alexa-twitter/locale"
+	"github.com/petergtz/alexa-twitter/verbalizer"
 	"github.com/petergtz/go-alexa"
-	"golang.org/x/net/html"
 )
 
 func main() {
@@ -50,9 +49,8 @@ func main() {
 
 	handler := &alexa.Handler{
 		Skill: &Skill{
-			i18nBundle:     i18nBundle,
-			consumerKey:    os.Getenv("CONSUMER_KEY"),
-			consumerSecret: os.Getenv("CONSUMER_SECRET"),
+			i18nBundle:      i18nBundle,
+			twitterProvider: NewTwitterProvider(os.Getenv("CONSUMER_KEY"), os.Getenv("CONSUMER_SECRET")),
 		},
 		Log:                   logger,
 		ExpectedApplicationID: os.Getenv("APPLICATION_ID"),
@@ -91,9 +89,22 @@ func main() {
 	logger.Fatal(e)
 }
 
+type TwitterVerbalizerProvider struct{ config *oauth1.Config }
+
+func NewTwitterProvider(consumerKey, consumerSecret string) *TwitterVerbalizerProvider {
+	return &TwitterVerbalizerProvider{config: oauth1.NewConfig(consumerKey, consumerSecret)}
+}
+
+func (tp *TwitterVerbalizerProvider) Get(accessTokenAndKey string) *verbalizer.Twitter {
+	// TODO: do accessTokenAndKey input checking
+	parts := strings.Split(accessTokenAndKey, ",")
+	client := twitter.NewClient(tp.config.Client(oauth1.NoContext, oauth1.NewToken(parts[0], parts[1])))
+	return verbalizer.NewTwitter(client.Timelines, client.Statuses)
+}
+
 type Skill struct {
-	i18nBundle                  *i18n.Bundle
-	consumerKey, consumerSecret string
+	i18nBundle      *i18n.Bundle
+	twitterProvider *TwitterVerbalizerProvider
 }
 
 const helpText = "Um einen Artikel vorgelesen zu bekommen, " +
@@ -113,45 +124,20 @@ func (h *Skill) ProcessRequest(requestEnv *alexa.RequestEnvelope) *alexa.Respons
 	switch requestEnv.Request.Type {
 
 	case "LaunchRequest":
-		return &alexa.ResponseEnvelope{Version: "1.0", Response: &alexa.Response{OutputSpeech: plainText("gestartet")}}
+		return &alexa.ResponseEnvelope{Version: "1.0", Response: &alexa.Response{OutputSpeech: plainText("Und los geht's mit dem Gezwitscher! Sage z.B. \"was gibt's neues?\" um die neusten Tweets aus Deiner Twitter Home Timeline zu hören.")}}
 
 	case "IntentRequest":
 		intent := requestEnv.Request.Intent
 		switch intent.Name {
 		case "TimelineIntent":
-			config := oauth1.NewConfig(h.consumerKey, h.consumerSecret)
-			parts := strings.Split(requestEnv.Session.User.AccessToken, ",")
-			client := twitter.NewClient(config.Client(oauth1.NoContext, oauth1.NewToken(parts[0], parts[1])))
-
-			tweets, _, e := client.Timelines.HomeTimeline(&twitter.HomeTimelineParams{
-				Count: 10,
-			})
+			timeline, e := h.twitterProvider.Get(requestEnv.Session.User.AccessToken).HomeTimeline()
 			if e != nil {
 				logger.Error(e)
-				internalError(l)
+				return internalError(l)
 			}
-			timeline := ""
-			for _, tweet := range tweets {
-				if tweet.RetweetedStatus != nil {
-					timeline += "Von " + tweet.RetweetedStatus.User.Name + ", retweeted von " + tweet.User.Name + ": " + tweet.Text + ". "
-				} else {
-					timeline += "Von " + tweet.User.Name + ": " + tweet.Text + ". "
-				}
-				// tweet.Entities.Urls[0].Indices.
-				if len(tweet.Entities.Urls) > 0 {
-					resp, e := http.Get(tweet.Entities.Urls[0].ExpandedURL)
-					if e != nil {
-						logger.Error(e)
-						continue
-					}
-					c, e := ioutil.ReadAll(resp.Body)
-					resp.Body.Close()
-					title := getTitle(string(c))
-					timeline += "Referenziert titel " + title + ". "
-				}
-			}
-
-			return &alexa.ResponseEnvelope{Version: "1.0", Response: &alexa.Response{OutputSpeech: plainText(timeline)}}
+			return &alexa.ResponseEnvelope{Version: "1.0", Response: &alexa.Response{
+				OutputSpeech: ssmlText(timeline),
+			}}
 		case "AMAZON.YesIntent",
 			"AMAZON.ResumeIntent",
 			"AMAZON.RepeatIntent",
@@ -159,10 +145,12 @@ func (h *Skill) ProcessRequest(requestEnv *alexa.RequestEnvelope) *alexa.Respons
 			"AMAZON.NoIntent",
 			"AMAZON.PauseIntent",
 			"AMAZON.HelpIntent",
-			"AMAZON.FallbackIntent",
-			"AMAZON.CancelIntent",
-			"AMAZON.StopIntent":
+			"AMAZON.FallbackIntent":
 			return &alexa.ResponseEnvelope{Version: "1.0", Response: &alexa.Response{OutputSpeech: plainText("nicht implementiert")}}
+		case "AMAZON.CancelIntent", "AMAZON.StopIntent":
+			return &alexa.ResponseEnvelope{Version: "1.0",
+				Response: &alexa.Response{ShouldSessionEnd: true},
+			}
 		default:
 			return internalError(l)
 		}
@@ -187,6 +175,10 @@ func plainText(text string) *alexa.OutputSpeech {
 	return &alexa.OutputSpeech{Type: "PlainText", Text: text}
 }
 
+func ssmlText(text string) *alexa.OutputSpeech {
+	return &alexa.OutputSpeech{Type: "SSML", SSML: text}
+}
+
 func internalError(l *i18n.Localizer) *alexa.ResponseEnvelope {
 	return &alexa.ResponseEnvelope{Version: "1.0",
 		Response: &alexa.Response{
@@ -196,44 +188,5 @@ func internalError(l *i18n.Localizer) *alexa.ResponseEnvelope {
 			}})),
 			ShouldSessionEnd: false,
 		},
-	}
-}
-
-func getTitle(HTMLString string) (title string) {
-
-	r := strings.NewReader(HTMLString)
-	z := html.NewTokenizer(r)
-
-	var i int
-	for {
-		tt := z.Next()
-
-		i++
-		if i > 100 { // Title should be one of the first tags
-			return
-		}
-
-		switch {
-		case tt == html.ErrorToken:
-			// End of the document, we're done
-			return
-		case tt == html.StartTagToken:
-			t := z.Token()
-
-			// Check if the token is an <title> tag
-			if t.Data != "title" {
-				continue
-			}
-
-			// fmt.Printf("%+v\n%v\n%v\n%v\n", t, t, t.Type.String(), t.Attr)
-			tt := z.Next()
-
-			if tt == html.TextToken {
-				t := z.Token()
-				title = t.Data
-				return
-				// fmt.Printf("%+v\n%v\n", t, t.Data)
-			}
-		}
 	}
 }

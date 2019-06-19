@@ -1,0 +1,151 @@
+{
+    "coordinates": null,
+    "created_at": "Tue Jun 18 18:50:12 +0000 2019",
+    "current_user_retweet": null,
+    "entities": {
+      "hashtags": [
+        {
+          "indices": [
+            66,
+            79
+          ],
+          "text": "fusionenergy"
+        },
+        {
+          "indices": [
+            170,
+            184
+          ],
+          "text": "climatechange"
+        }
+      ],
+      "media": null,
+      "urls": [
+        {
+          "indices": [
+            198,
+            221
+          ],
+          "display_url": "ow.ly/NqA950uGjbu",
+          "expanded_url": "http://ow.ly/NqA950uGjbu",
+          "url": "https://t.co/y6mEGoGOS6"
+        }
+      ],
+      "user_mentions": [
+        {
+          "indices": [
+            0,
+            14
+          ],
+          "id": 2240001715,
+          "id_str": "2240001715",
+          "name": "General Fusion",
+          "screen_name": "GeneralFusion"
+        }
+      ]
+    },
+    "favorite_count": 8,
+    "favorited": false,
+    "filter_level": "",
+    "id": 1141055529843929091,
+    "id_str": "1141055529843929091",
+    "in_reply_to_screen_name": "GeneralFusion",
+    "in_reply_to_status_id": 0,
+    "in_reply_to_status_id_str": "",
+    "in_reply_to_user_id": 2240001715,
+    "in_reply_to_user_id_str": "2240001715",
+    "lang": "en",
+    "possibly_sensitive": false,
+    "quote_count": 0,
+    "reply_count": 0,
+    "retweet_count": 3,
+    "retweeted": false,
+    "retweeted_status": null,
+    "source": "\u003ca href=\"https://www.hootsuite.com\" rel=\"nofollow\"\u003eHootsuite Inc.\u003c/a\u003e",
+    "scopes": null,
+    "text": "",
+    "full_text": "@GeneralFusion is pursuing the fastest and most practical path to #fusionenergy - a clean, safe, on-demand, and economically viable way to power economies while fighting #climatechange. Learn more: https://t.co/y6mEGoGOS6",
+    "display_text_range": [
+      0,
+      221
+    ],
+    "place": null,
+    "truncated": false,
+    "user": {
+      "contributors_enabled": false,
+      "created_at": "Wed Dec 11 01:17:49 +0000 2013",
+      "default_profile": false,
+      "default_profile_image": false,
+      "description": "Providing news and updates on General Fusion Inc. and the fusion community at large",
+      "email": "",
+      "entities": {
+        "url": {
+          "hashtags": null,
+          "media": null,
+          "urls": [
+            {
+              "indices": [
+                0,
+                22
+              ],
+              "display_url": "generalfusion.com",
+              "expanded_url": "http://generalfusion.com",
+              "url": "http://t.co/VoH3KulmmJ"
+            }
+          ],
+          "user_mentions": null
+        },
+        "description": {
+          "hashtags": null,
+          "media": null,
+          "urls": [],
+          "user_mentions": null
+        }
+      },
+      "favourites_count": 352,
+      "follow_request_sent": false,
+      "following": true,
+      "followers_count": 4242,
+      "friends_count": 253,
+      "geo_enabled": true,
+      "id": 2240001715,
+      "id_str": "2240001715",
+      "is_translator": false,
+      "lang": "",
+      "listed_count": 148,
+      "location": "Burnaby, BC, Canada",
+      "name": "General Fusion",
+      "notifications": false,
+      "profile_background_color": "FFFFFF",
+      "profile_background_image_url": "http://abs.twimg.com/images/themes/theme14/bg.gif",
+      "profile_background_image_url_https": "https://abs.twimg.com/images/themes/theme14/bg.gif",
+      "profile_background_tile": false,
+      "profile_banner_url": "https://pbs.twimg.com/profile_banners/2240001715/1524669220",
+      "profile_image_url": "http://pbs.twimg.com/profile_images/763781333164232704/4x4UWAZi_normal.jpg",
+      "profile_image_url_https": "https://pbs.twimg.com/profile_images/763781333164232704/4x4UWAZi_normal.jpg",
+      "profile_link_color": "CC0000",
+      "profile_sidebar_border_color": "FFFFFF",
+      "profile_sidebar_fill_color": "EFEFEF",
+      "profile_text_color": "333333",
+      "profile_use_background_image": false,
+      "protected": false,
+      "screen_name": "GeneralFusion",
+      "show_all_inline_media": false,
+      "status": null,
+      "statuses_count": 2239,
+      "time_zone": "",
+      "url": "http://t.co/VoH3KulmmJ",
+      "utc_offset": 0,
+      "verified": false,
+      "withheld_in_countries": null,
+      "withheld_scope": ""
+    },
+    "withheld_copyright": false,
+    "withheld_in_countries": null,
+    "withheld_scope": "",
+    "extended_entities": null,
+    "extended_tweet": null,
+    "quoted_status_id": 0,
+    "quoted_status_id_str": "",
+    "quoted_status": null
+  }

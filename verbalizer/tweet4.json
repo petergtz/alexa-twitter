@@ -1,0 +1,380 @@
+{
+    "coordinates": null,
+    "created_at": "Tue Jun 18 23:52:51 +0000 2019",
+    "current_user_retweet": null,
+    "entities": {
+      "hashtags": [
+        {
+          "indices": [
+            59,
+            64
+          ],
+          "text": "STP2"
+        },
+        {
+          "indices": [
+            131,
+            135
+          ],
+          "text": "DoD"
+        }
+      ],
+      "media": null,
+      "urls": [],
+      "user_mentions": [
+        {
+          "indices": [
+            3,
+            10
+          ],
+          "id": 963859825,
+          "id_str": "963859825",
+          "name": "AF SMC",
+          "screen_name": "AF_SMC"
+        }
+      ]
+    },
+    "favorite_count": 0,
+    "favorited": false,
+    "filter_level": "",
+    "id": 1141131693954195456,
+    "id_str": "1141131693954195456",
+    "in_reply_to_screen_name": "",
+    "in_reply_to_status_id": 0,
+    "in_reply_to_status_id_str": "",
+    "in_reply_to_user_id": 0,
+    "in_reply_to_user_id_str": "",
+    "lang": "en",
+    "possibly_sensitive": false,
+    "quote_count": 0,
+    "reply_count": 0,
+    "retweet_count": 726,
+    "retweeted": false,
+    "retweeted_status": {
+      "coordinates": null,
+      "created_at": "Tue Jun 18 21:44:51 +0000 2019",
+      "current_user_retweet": null,
+      "entities": {
+        "hashtags": [
+          {
+            "indices": [
+              47,
+              52
+            ],
+            "text": "STP2"
+          },
+          {
+            "indices": [
+              119,
+              123
+            ],
+            "text": "DoD"
+          },
+          {
+            "indices": [
+              145,
+              149
+            ],
+            "text": "SMC"
+          },
+          {
+            "indices": [
+              150,
+              166
+            ],
+            "text": "SpaceStartsHere"
+          }
+        ],
+        "media": [
+          {
+            "indices": [
+              167,
+              190
+            ],
+            "display_url": "pic.twitter.com/sEUUDx5ksw",
+            "expanded_url": "https://twitter.com/AF_SMC/status/1141099481628364808/photo/1",
+            "url": "https://t.co/sEUUDx5ksw",
+            "id": 1141099474846126085,
+            "id_str": "1141099474846126085",
+            "media_url": "http://pbs.twimg.com/media/D9X_7TOWkAULFXw.jpg",
+            "media_url_https": "https://pbs.twimg.com/media/D9X_7TOWkAULFXw.jpg",
+            "source_status_id": 0,
+            "source_status_id_str": "",
+            "type": "photo",
+            "sizes": {
+              "thumb": {
+                "w": 150,
+                "h": 150,
+                "resize": "crop"
+              },
+              "large": {
+                "w": 1080,
+                "h": 1566,
+                "resize": "fit"
+              },
+              "medium": {
+                "w": 828,
+                "h": 1200,
+                "resize": "fit"
+              },
+              "small": {
+                "w": 469,
+                "h": 680,
+                "resize": "fit"
+              }
+            },
+            "video_info": {
+              "aspect_ratio": [
+                0,
+                0
+              ],
+              "duration_millis": 0,
+              "variants": null
+            }
+          }
+        ],
+        "urls": [],
+        "user_mentions": []
+      },
+      "favorite_count": 5719,
+      "favorited": false,
+      "filter_level": "",
+      "id": 1141099481628364808,
+      "id_str": "1141099481628364808",
+      "in_reply_to_screen_name": "",
+      "in_reply_to_status_id": 0,
+      "in_reply_to_status_id_str": "",
+      "in_reply_to_user_id": 0,
+      "in_reply_to_user_id_str": "",
+      "lang": "en",
+      "possibly_sensitive": false,
+      "quote_count": 0,
+      "reply_count": 0,
+      "retweet_count": 726,
+      "retweeted": false,
+      "retweeted_status": null,
+      "source": "\u003ca href=\"http://twitter.com/download/android\" rel=\"nofollow\"\u003eTwitter for Android\u003c/a\u003e",
+      "scopes": null,
+      "text": "",
+      "full_text": "The 3700 kg Integrated Payload Stack (IPS) for #STP2 has been completed! Have a look before it blasts off on the first #DoD Falcon Heavy launch! #SMC #SpaceStartsHere https://t.co/sEUUDx5ksw",
+      "display_text_range": [
+        0,
+        166
+      ],
+      "place": null,
+      "truncated": false,
+      "user": {
+        "contributors_enabled": false,
+        "created_at": "Thu Nov 22 08:11:53 +0000 2012",
+        "default_profile": false,
+        "default_profile_image": false,
+        "description": "Official Space \u0026 Missile Systems Center (SMC): SMC at Los Angeles AFB in El Segundo, CA https://t.co/pk5A7ykDY5 (No federal endorsement implied)",
+        "email": "",
+        "entities": {
+          "url": {
+            "hashtags": null,
+            "media": null,
+            "urls": [
+              {
+                "indices": [
+                  0,
+                  23
+                ],
+                "display_url": "losangeles.af.mil",
+                "expanded_url": "http://www.losangeles.af.mil/",
+                "url": "https://t.co/pk5A7ykDY5"
+              }
+            ],
+            "user_mentions": null
+          },
+          "description": {
+            "hashtags": null,
+            "media": null,
+            "urls": [
+              {
+                "indices": [
+                  88,
+                  111
+                ],
+                "display_url": "losangeles.af.mil",
+                "expanded_url": "http://www.losangeles.af.mil/",
+                "url": "https://t.co/pk5A7ykDY5"
+              }
+            ],
+            "user_mentions": null
+          }
+        },
+        "favourites_count": 1208,
+        "follow_request_sent": false,
+        "following": false,
+        "followers_count": 6619,
+        "friends_count": 217,
+        "geo_enabled": false,
+        "id": 963859825,
+        "id_str": "963859825",
+        "is_translator": false,
+        "lang": "",
+        "listed_count": 225,
+        "location": "LAAFB, El Segundo, CA",
+        "name": "AF SMC",
+        "notifications": false,
+        "profile_background_color": "131516",
+        "profile_background_image_url": "http://abs.twimg.com/images/themes/theme15/bg.png",
+        "profile_background_image_url_https": "https://abs.twimg.com/images/themes/theme15/bg.png",
+        "profile_background_tile": false,
+        "profile_banner_url": "https://pbs.twimg.com/profile_banners/963859825/1353575933",
+        "profile_image_url": "http://pbs.twimg.com/profile_images/692443836736507904/4I0Bh5oX_normal.jpg",
+        "profile_image_url_https": "https://pbs.twimg.com/profile_images/692443836736507904/4I0Bh5oX_normal.jpg",
+        "profile_link_color": "ABB8C2",
+        "profile_sidebar_border_color": "FFFFFF",
+        "profile_sidebar_fill_color": "C0DFEC",
+        "profile_text_color": "333333",
+        "profile_use_background_image": true,
+        "protected": false,
+        "screen_name": "AF_SMC",
+        "show_all_inline_media": false,
+        "status": null,
+        "statuses_count": 5581,
+        "time_zone": "",
+        "url": "https://t.co/pk5A7ykDY5",
+        "utc_offset": 0,
+        "verified": false,
+        "withheld_in_countries": null,
+        "withheld_scope": ""
+      },
+      "withheld_copyright": false,
+      "withheld_in_countries": null,
+      "withheld_scope": "",
+      "extended_entities": {
+        "media": [
+          {
+            "indices": [
+              167,
+              190
+            ],
+            "display_url": "pic.twitter.com/sEUUDx5ksw",
+            "expanded_url": "https://twitter.com/AF_SMC/status/1141099481628364808/photo/1",
+            "url": "https://t.co/sEUUDx5ksw",
+            "id": 1141099474846126085,
+            "id_str": "1141099474846126085",
+            "media_url": "http://pbs.twimg.com/media/D9X_7TOWkAULFXw.jpg",
+            "media_url_https": "https://pbs.twimg.com/media/D9X_7TOWkAULFXw.jpg",
+            "source_status_id": 0,
+            "source_status_id_str": "",
+            "type": "photo",
+            "sizes": {
+              "thumb": {
+                "w": 150,
+                "h": 150,
+                "resize": "crop"
+              },
+              "large": {
+                "w": 1080,
+                "h": 1566,
+                "resize": "fit"
+              },
+              "medium": {
+                "w": 828,
+                "h": 1200,
+                "resize": "fit"
+              },
+              "small": {
+                "w": 469,
+                "h": 680,
+                "resize": "fit"
+              }
+            },
+            "video_info": {
+              "aspect_ratio": [
+                0,
+                0
+              ],
+              "duration_millis": 0,
+              "variants": null
+            }
+          }
+        ]
+      },
+      "extended_tweet": null,
+      "quoted_status_id": 0,
+      "quoted_status_id_str": "",
+      "quoted_status": null
+    },
+    "source": "\u003ca href=\"http://twitter.com/download/iphone\" rel=\"nofollow\"\u003eTwitter for iPhone\u003c/a\u003e",
+    "scopes": null,
+    "text": "",
+    "full_text": "RT @AF_SMC: The 3700 kg Integrated Payload Stack (IPS) for #STP2 has been completed! Have a look before it blasts off on the first #DoD Fal…",
+    "display_text_range": [
+      0,
+      140
+    ],
+    "place": null,
+    "truncated": false,
+    "user": {
+      "contributors_enabled": false,
+      "created_at": "Tue Jun 02 20:12:29 +0000 2009",
+      "default_profile": false,
+      "default_profile_image": false,
+      "description": "",
+      "email": "",
+      "entities": {
+        "url": {
+          "hashtags": null,
+          "media": null,
+          "urls": null,
+          "user_mentions": null
+        },
+        "description": {
+          "hashtags": null,
+          "media": null,
+          "urls": [],
+          "user_mentions": null
+        }
+      },
+      "favourites_count": 3143,
+      "follow_request_sent": false,
+      "following": true,
+      "followers_count": 26994565,
+      "friends_count": 82,
+      "geo_enabled": false,
+      "id": 44196397,
+      "id_str": "44196397",
+      "is_translator": false,
+      "lang": "",
+      "listed_count": 50340,
+      "location": "",
+      "name": "Elon Musk",
+      "notifications": true,
+      "profile_background_color": "C0DEED",
+      "profile_background_image_url": "http://abs.twimg.com/images/themes/theme1/bg.png",
+      "profile_background_image_url_https": "https://abs.twimg.com/images/themes/theme1/bg.png",
+      "profile_background_tile": false,
+      "profile_banner_url": "https://pbs.twimg.com/profile_banners/44196397/1556675519",
+      "profile_image_url": "http://pbs.twimg.com/profile_images/1141055321026289669/RCpqvuF9_normal.jpg",
+      "profile_image_url_https": "https://pbs.twimg.com/profile_images/1141055321026289669/RCpqvuF9_normal.jpg",
+      "profile_link_color": "0084B4",
+      "profile_sidebar_border_color": "C0DEED",
+      "profile_sidebar_fill_color": "DDEEF6",
+      "profile_text_color": "333333",
+      "profile_use_background_image": true,
+      "protected": false,
+      "screen_name": "elonmusk",
+      "show_all_inline_media": false,
+      "status": null,
+      "statuses_count": 7901,
+      "time_zone": "",
+      "url": "",
+      "utc_offset": 0,
+      "verified": true,
+      "withheld_in_countries": null,
+      "withheld_scope": ""
+    },
+    "withheld_copyright": false,
+    "withheld_in_countries": null,
+    "withheld_scope": "",
+    "extended_entities": null,
+    "extended_tweet": null,
+    "quoted_status_id": 0,
+    "quoted_status_id_str": "",
+    "quoted_status": null
+  }
