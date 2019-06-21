@@ -40,7 +40,7 @@ func (t *Twitter) Show(id int64) (string, error) {
 	if e != nil {
 		return "", e
 	}
-	return `<speak>` + verbalized + `</speak>`, nil
+	return verbalized, nil
 }
 
 func (t *Twitter) HomeTimeline() (string, error) {
@@ -59,7 +59,7 @@ func (t *Twitter) HomeTimeline() (string, error) {
 		}
 		timeline += verbalized + `<break strength="x-strong"/>`
 	}
-	return "<speak>" + timeline + "</speak>", nil
+	return timeline, nil
 }
 
 func verbalizedTweet(tweet *twitter.Tweet) (string, error) {
@@ -77,6 +77,11 @@ func verbalizedTweet(tweet *twitter.Tweet) (string, error) {
 			text = strings.Replace(text, mediaEntity.URL, "", 1)
 			attachment = `<break strength="strong"/>Angehängt zum Tweet ist ein Bild.`
 		}
+	}
+	text = strings.ReplaceAll(text, "&", "and")
+
+	for _, user := range tweet.Entities.UserMentions {
+		text = strings.ReplaceAll(text, "@"+user.ScreenName, user.Name)
 	}
 
 	for _, u := range tweet.Entities.Urls {
@@ -96,9 +101,9 @@ func verbalizedTweet(tweet *twitter.Tweet) (string, error) {
 		title := strings.ReplaceAll(getTitle(string(c)), "·", " ")
 		switch tweet.Lang {
 		case "en":
-			text = strings.Replace(text, u.URL, parsedURL.Hostname()+", title: \""+title+"\",", 1)
+			text = strings.Replace(text, u.URL, parsedURL.Hostname()+", title: \""+strings.ReplaceAll(title, "&", "and")+"\",", 1)
 		case "de":
-			text = strings.Replace(text, u.URL, parsedURL.Hostname()+", titel: \""+title+"\",", 1)
+			text = strings.Replace(text, u.URL, parsedURL.Hostname()+", titel: \""+strings.ReplaceAll(title, "&", "and")+"\",", 1)
 		}
 	}
 	for _, hashtag := range tweet.Entities.Hashtags {

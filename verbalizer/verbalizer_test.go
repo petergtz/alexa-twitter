@@ -39,6 +39,14 @@ var _ = Describe("Verbalizer", func() {
 				`github.com, title: "Go2ErrorHandlingFeedback   golang/go Wiki   GitHub",.</lang></speak>`))
 	})
 
+	It("verbalizes a simple tweet with URLs and hashtags", func() {
+		Whenever(statusesClient.Show(AnyInt64(), AnyPtrToTwitterStatusShowParams())).
+			ThenReturn(tweet("tweet3.json"), nil, nil)
+
+		Expect(t.Show(-1)).To(Equal(
+			`<speak>Von Danny Trinh: <lang xml:lang="en-US">Tuesday energy: from Gentry Underwood on Navigator. As you add more people to a team, be mindful of all of the new relationships to foster: </lang></speak>`))
+	})
+
 	It("verbalizes a retweet", func() {
 		Whenever(statusesClient.Show(AnyInt64(), AnyPtrToTwitterStatusShowParams())).
 			ThenReturn(tweet("tweet4.json"), nil, nil)

@@ -124,7 +124,15 @@ func (h *Skill) ProcessRequest(requestEnv *alexa.RequestEnvelope) *alexa.Respons
 	switch requestEnv.Request.Type {
 
 	case "LaunchRequest":
-		return &alexa.ResponseEnvelope{Version: "1.0", Response: &alexa.Response{OutputSpeech: plainText("Und los geht's mit dem Gezwitscher! Sage z.B. \"was gibt's neues?\" um die neusten Tweets aus Deiner Twitter Home Timeline zu hören.")}}
+		timeline, e := h.twitterProvider.Get(requestEnv.Session.User.AccessToken).HomeTimeline()
+		if e != nil {
+			logger.Error(e)
+			return internalError(l)
+		}
+		logger.Debug(timeline)
+		return &alexa.ResponseEnvelope{Version: "1.0", Response: &alexa.Response{
+			OutputSpeech: ssmlText("Hier sind die neuesten Tweets aus Deiner Timeline: " + timeline),
+		}}
 
 	case "IntentRequest":
 		intent := requestEnv.Request.Intent
@@ -135,6 +143,7 @@ func (h *Skill) ProcessRequest(requestEnv *alexa.RequestEnvelope) *alexa.Respons
 				logger.Error(e)
 				return internalError(l)
 			}
+			logger.Debug(timeline)
 			return &alexa.ResponseEnvelope{Version: "1.0", Response: &alexa.Response{
 				OutputSpeech: ssmlText(timeline),
 			}}
@@ -161,7 +170,6 @@ func (h *Skill) ProcessRequest(requestEnv *alexa.RequestEnvelope) *alexa.Respons
 	default:
 		return &alexa.ResponseEnvelope{Version: "1.0"}
 	}
-	return &alexa.ResponseEnvelope{Version: "1.0"}
 }
 
 func quickHelp(sessionAttributes map[string]interface{}) *alexa.ResponseEnvelope {
@@ -176,7 +184,10 @@ func plainText(text string) *alexa.OutputSpeech {
 }
 
 func ssmlText(text string) *alexa.OutputSpeech {
-	return &alexa.OutputSpeech{Type: "SSML", SSML: text}
+	return &alexa.OutputSpeech{
+		Type: "SSML",
+		SSML: "<speak>" + text + "</speak>",
+	}
 }
 
 func internalError(l *i18n.Localizer) *alexa.ResponseEnvelope {
