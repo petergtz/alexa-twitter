@@ -113,6 +113,17 @@ func (h *Skill) ProcessRequest(requestEnv *alexa.RequestEnvelope) *alexa.Respons
 
 	l := i18n.NewLocalizer(h.i18nBundle, requestEnv.Request.Locale)
 
+	if requestEnv.Session.User.AccessToken == "" {
+		return &alexa.ResponseEnvelope{Version: "1.0",
+			Response: &alexa.Response{
+				OutputSpeech:     plainText("Bevor Du die neuesten Tweets aus Deiner Timeline hören kannst, verbinde bitte zuerst Alexa mit Deinem Twitter Account in der Alexa App."),
+				Card:             &alexa.Card{Type: "LinkAccount"},
+				ShouldSessionEnd: true,
+			},
+			SessionAttributes: requestEnv.Session.Attributes,
+		}
+	}
+
 	switch requestEnv.Request.Type {
 
 	case "LaunchRequest":
