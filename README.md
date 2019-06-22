@@ -14,19 +14,21 @@ Tweety links your Alexa account with your Twitter account and lets Alexa read th
 
 Say e.g.:
 
-> _Alexa, open my Twitter home timeline_
+> _Alexa, open my Twitter timeline_
 
 Sage z.B.:
 
 > _Alexa, öffne meine Twitter timeline_
 
+## Terms of Use
+
+The terms of Use can be found [here](tweety-terms-of-use.md).
+
 ## Privacy Policy
-TBD
 
-## Datenschutzerklärung
+The **Tweety** Alexa Skill ("Tweety") processes Twitter account user tokens, which the Alexa service provides to Tweety as part of every request. These tokens are used exclusively to fetch a Twitter user's home timeline and present it via an Alexa enabled device. The tokens are not used or stored otherwise and are disposed after each request.
 
-TBD
+The user data Tweety retrieves from the Twitter Service is used exclusively to present it to the same user via an Alexa enabled device. It is not shared, stored or processed otherwise.
 
-## Technical Information
+Other use of Twitter account tokens or Twitter user data than the one described above does not happen.
 
-The source code for this skill is hosted at https://github.com/petergtz/alexa-twitter. The skill itself is hosted via [Cloud Foundry](https://www.cloudfoundry.org/) in the [IBM Cloud](https://www.ibm.com/cloud/).
