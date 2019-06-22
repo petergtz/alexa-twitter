@@ -107,14 +107,6 @@ type Skill struct {
 	twitterProvider *TwitterVerbalizerProvider
 }
 
-const helpText = "Um einen Artikel vorgelesen zu bekommen, " +
-	"sage z.B. \"Suche nach Käsekuchen.\" oder \"Was ist Käsekuchen?\". " +
-	"Du kannst jederzeit zum Inhaltsverzeichnis springen, indem Du \"Inhaltsverzeichnis\" sagst. " +
-	"Oder sage \"Springe zu Abschnitt 3.2\", um direkt zu diesem Abschnitt zu springen."
-
-const quickHelpText = "Suche zunächst nach einem Begriff. " +
-	"Sage z.B. \"Suche nach Käsekuchen.\" oder \"Was ist Käsekuchen?\"."
-
 func (h *Skill) ProcessRequest(requestEnv *alexa.RequestEnvelope) *alexa.ResponseEnvelope {
 	logger.Infow("Request", "Type", requestEnv.Request.Type, "Intent", requestEnv.Request.Intent,
 		"SessionAttributes", requestEnv.Session.Attributes, "locale", requestEnv.Request.Locale)
@@ -147,15 +139,15 @@ func (h *Skill) ProcessRequest(requestEnv *alexa.RequestEnvelope) *alexa.Respons
 			return &alexa.ResponseEnvelope{Version: "1.0", Response: &alexa.Response{
 				OutputSpeech: ssmlText(timeline),
 			}}
-		case "AMAZON.YesIntent",
-			"AMAZON.ResumeIntent",
-			"AMAZON.RepeatIntent",
-			"AMAZON.NextIntent",
-			"AMAZON.NoIntent",
-			"AMAZON.PauseIntent",
-			"AMAZON.HelpIntent",
-			"AMAZON.FallbackIntent":
-			return &alexa.ResponseEnvelope{Version: "1.0", Response: &alexa.Response{OutputSpeech: plainText("nicht implementiert")}}
+		case "AMAZON.HelpIntent":
+			return &alexa.ResponseEnvelope{Version: "1.0", Response: &alexa.Response{OutputSpeech: plainText(
+				"Du benutzt gerade Tweety, einen Skill zur Interaktion mit Deinem Twitter Account. Sage z.B. \"Was gibt es neues\".")}}
+		case "AMAZON.FallbackIntent":
+			return &alexa.ResponseEnvelope{Version: "1.0",
+				Response: &alexa.Response{OutputSpeech: plainText(
+					"Tweety kann hiermit nicht weiterhelfen. Aber Du kannst z.B. sagen \"Was gibt es neues\"."),
+				},
+			}
 		case "AMAZON.CancelIntent", "AMAZON.StopIntent":
 			return &alexa.ResponseEnvelope{Version: "1.0",
 				Response: &alexa.Response{ShouldSessionEnd: true},
@@ -169,13 +161,6 @@ func (h *Skill) ProcessRequest(requestEnv *alexa.RequestEnvelope) *alexa.Respons
 
 	default:
 		return &alexa.ResponseEnvelope{Version: "1.0"}
-	}
-}
-
-func quickHelp(sessionAttributes map[string]interface{}) *alexa.ResponseEnvelope {
-	return &alexa.ResponseEnvelope{Version: "1.0",
-		Response:          &alexa.Response{OutputSpeech: plainText(quickHelpText)},
-		SessionAttributes: sessionAttributes,
 	}
 }
 
@@ -195,7 +180,7 @@ func internalError(l *i18n.Localizer) *alexa.ResponseEnvelope {
 		Response: &alexa.Response{
 			OutputSpeech: plainText(l.MustLocalize(&LocalizeConfig{DefaultMessage: &Message{
 				ID:    "InternalError",
-				Other: "Es ist ein interner Fehler aufgetreten bei der Benutzung von Wikipedia.",
+				Other: "Es ist ein interner Fehler aufgetreten bei der Benutzung von Tweety.",
 			}})),
 			ShouldSessionEnd: false,
 		},
