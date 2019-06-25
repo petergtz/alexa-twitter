@@ -14,11 +14,11 @@ Tweety links your Alexa account with your Twitter account and lets Alexa read th
 
 Say e.g.:
 
-> _Alexa, open my Twitter timeline_
+> _Alexa, ask Twee Tee for the latest news_
 
 Sage z.B.:
 
-> _Alexa, öffne meine Twitter timeline_
+> _Alexa, frage Twee Tee was es neues gibt_
 
 ## Terms of Use
 
