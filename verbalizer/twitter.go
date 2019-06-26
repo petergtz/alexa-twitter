@@ -1,10 +1,13 @@
 package verbalizer
 
 import (
+	"bytes"
 	"io/ioutil"
 	"net/http"
 	"net/url"
 	"strings"
+
+	"encoding/xml"
 
 	"github.com/dghubble/go-twitter/twitter"
 	"golang.org/x/net/html"
@@ -57,7 +60,7 @@ func (t *Twitter) HomeTimeline() (string, error) {
 		if e != nil {
 			return "", e
 		}
-		timeline += verbalized + `<break strength="x-strong"/>`
+		timeline += verbalized + `<break time="1300ms"/>`
 	}
 	return timeline, nil
 }
@@ -78,10 +81,10 @@ func verbalizedTweet(tweet *twitter.Tweet) (string, error) {
 			attachment = `<break strength="strong"/>Angehängt zum Tweet ist ein Bild.`
 		}
 	}
-	text = strings.ReplaceAll(text, "&", "and")
+	text = xmlEscapeText(text)
 
 	for _, user := range tweet.Entities.UserMentions {
-		text = strings.ReplaceAll(text, "@"+user.ScreenName, user.Name)
+		text = strings.ReplaceAll(text, "@"+user.ScreenName, xmlEscapeText(user.Name))
 	}
 
 	for _, u := range tweet.Entities.Urls {
@@ -98,16 +101,16 @@ func verbalizedTweet(tweet *twitter.Tweet) (string, error) {
 		}
 		c, e := ioutil.ReadAll(resp.Body)
 		resp.Body.Close()
-		title := strings.ReplaceAll(getTitle(string(c)), "·", " ")
+		title := xmlEscapeText(strings.ReplaceAll(getTitle(string(c)), "·", " "))
 		switch tweet.Lang {
 		case "en":
-			text = strings.Replace(text, u.URL, parsedURL.Hostname()+", title: \""+strings.ReplaceAll(title, "&", "and")+"\",", 1)
+			text = strings.Replace(text, u.URL, parsedURL.Hostname()+", title: \""+title+"\",", 1)
 		case "de":
-			text = strings.Replace(text, u.URL, parsedURL.Hostname()+", titel: \""+strings.ReplaceAll(title, "&", "and")+"\",", 1)
+			text = strings.Replace(text, u.URL, parsedURL.Hostname()+", titel: \""+title+"\",", 1)
 		}
 	}
 	for _, hashtag := range tweet.Entities.Hashtags {
-		text = strings.Replace(text, "#"+hashtag.Text, `<break strength="medium"/>hashtag<break strength="medium"/>`+hashtag.Text+`<break strength="medium"/>`, 1)
+		text = strings.Replace(text, "#"+hashtag.Text, `<break strength="medium"/>hashtag<break strength="medium"/>`+xmlEscapeText(hashtag.Text)+`<break strength="medium"/>`, 1)
 	}
 	switch tweet.Lang {
 	case "en":
@@ -117,9 +120,15 @@ func verbalizedTweet(tweet *twitter.Tweet) (string, error) {
 	}
 
 	if retweeted {
-		return "Von " + tweet.User.Name + ", retweeted von " + retweeter + ": " + text + attachment, nil
+		return "Von " + xmlEscapeText(tweet.User.Name) + ", retweeted von " + xmlEscapeText(retweeter) + ": " + text + attachment, nil
 	}
-	return "Von " + tweet.User.Name + ": " + text, nil
+	return "Von " + xmlEscapeText(tweet.User.Name) + ": " + text, nil
+}
+
+func xmlEscapeText(text string) string {
+	var tempBuffer bytes.Buffer
+	xml.EscapeText(&tempBuffer, []byte(text))
+	return tempBuffer.String()
 }
 
 func getTitle(HTMLString string) (title string) {

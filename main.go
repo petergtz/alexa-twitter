@@ -134,7 +134,7 @@ func (h *Skill) ProcessRequest(requestEnv *alexa.RequestEnvelope) *alexa.Respons
 		}
 		logger.Debug(timeline)
 		return &alexa.ResponseEnvelope{Version: "1.0", Response: &alexa.Response{
-			OutputSpeech: ssmlText("Hier sind die neuesten Tweets aus Deiner Timeline: " + timeline),
+			OutputSpeech: plainText("Du befindest Dich jetzt bei Tweety. Sage z.B. was gibt's neues?"),
 		}}
 
 	case "IntentRequest":
@@ -148,7 +148,8 @@ func (h *Skill) ProcessRequest(requestEnv *alexa.RequestEnvelope) *alexa.Respons
 			}
 			logger.Debug(timeline)
 			return &alexa.ResponseEnvelope{Version: "1.0", Response: &alexa.Response{
-				OutputSpeech: ssmlText(timeline),
+				OutputSpeech:     ssmlText(timeline),
+				ShouldSessionEnd: true,
 			}}
 		case "AMAZON.HelpIntent":
 			return &alexa.ResponseEnvelope{Version: "1.0", Response: &alexa.Response{OutputSpeech: plainText(
