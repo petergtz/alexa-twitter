@@ -1,0 +1,335 @@
+{
+    "coordinates": null,
+    "created_at": "Sat Jun 29 19:22:46 +0000 2019",
+    "current_user_retweet": null,
+    "entities": {
+      "hashtags": [],
+      "media": null,
+      "urls": [
+        {
+          "indices": [
+            11,
+            34
+          ],
+          "display_url": "twitter.com/mlle_krawall/s…",
+          "expanded_url": "https://twitter.com/mlle_krawall/status/1144896680980045824",
+          "url": "https://t.co/trSEPBses8"
+        }
+      ],
+      "user_mentions": []
+    },
+    "favorite_count": 0,
+    "favorited": false,
+    "filter_level": "",
+    "id": 1145049991725105153,
+    "id_str": "1145049991725105153",
+    "in_reply_to_screen_name": "",
+    "in_reply_to_status_id": 0,
+    "in_reply_to_status_id_str": "",
+    "in_reply_to_user_id": 0,
+    "in_reply_to_user_id_str": "",
+    "lang": "en",
+    "possibly_sensitive": false,
+    "quote_count": 0,
+    "reply_count": 0,
+    "retweet_count": 0,
+    "retweeted": false,
+    "retweeted_status": null,
+    "source": "\u003ca href=\"http://tapbots.com/tweetbot\" rel=\"nofollow\"\u003eTweetbot for iΟS\u003c/a\u003e",
+    "scopes": null,
+    "text": "",
+    "full_text": "Of course. https://t.co/trSEPBses8",
+    "display_text_range": [
+      0,
+      10
+    ],
+    "place": null,
+    "truncated": false,
+    "user": {
+      "contributors_enabled": false,
+      "created_at": "Wed May 28 17:21:38 +0000 2008",
+      "default_profile": false,
+      "default_profile_image": false,
+      "description": "Steffen is a software developer, Ruby enthusiast, husband and proud father of two sons. In reverse priority order.",
+      "email": "",
+      "entities": {
+        "url": {
+          "hashtags": null,
+          "media": null,
+          "urls": [
+            {
+              "indices": [
+                0,
+                23
+              ],
+              "display_url": "chaos.social/@suhlig",
+              "expanded_url": "https://chaos.social/@suhlig",
+              "url": "https://t.co/pXp7k14ohp"
+            }
+          ],
+          "user_mentions": null
+        },
+        "description": {
+          "hashtags": null,
+          "media": null,
+          "urls": [],
+          "user_mentions": null
+        }
+      },
+      "favourites_count": 3573,
+      "follow_request_sent": false,
+      "following": true,
+      "followers_count": 198,
+      "friends_count": 1038,
+      "geo_enabled": true,
+      "id": 14935687,
+      "id_str": "14935687",
+      "is_translator": false,
+      "lang": "",
+      "listed_count": 27,
+      "location": "Bondorf, Germany",
+      "name": "Steffen Uhlig",
+      "notifications": false,
+      "profile_background_color": "FFFFFF",
+      "profile_background_image_url": "http://abs.twimg.com/images/themes/theme1/bg.png",
+      "profile_background_image_url_https": "https://abs.twimg.com/images/themes/theme1/bg.png",
+      "profile_background_tile": false,
+      "profile_banner_url": "https://pbs.twimg.com/profile_banners/14935687/1541978816",
+      "profile_image_url": "http://pbs.twimg.com/profile_images/1072239737585496064/COHRb090_normal.jpg",
+      "profile_image_url_https": "https://pbs.twimg.com/profile_images/1072239737585496064/COHRb090_normal.jpg",
+      "profile_link_color": "0000FF",
+      "profile_sidebar_border_color": "999999",
+      "profile_sidebar_fill_color": "FFFFFF",
+      "profile_text_color": "000000",
+      "profile_use_background_image": false,
+      "protected": false,
+      "screen_name": "suhlig",
+      "show_all_inline_media": false,
+      "status": null,
+      "statuses_count": 3714,
+      "time_zone": "",
+      "url": "https://t.co/pXp7k14ohp",
+      "utc_offset": 0,
+      "verified": false,
+      "withheld_in_countries": null,
+      "withheld_scope": ""
+    },
+    "withheld_copyright": false,
+    "withheld_in_countries": null,
+    "withheld_scope": "",
+    "extended_entities": null,
+    "extended_tweet": null,
+    "quoted_status_id": 1144896680980045824,
+    "quoted_status_id_str": "1144896680980045824",
+    "quoted_status": {
+      "coordinates": null,
+      "created_at": "Sat Jun 29 09:13:34 +0000 2019",
+      "current_user_retweet": null,
+      "entities": {
+        "hashtags": [],
+        "media": [
+          {
+            "indices": [
+              45,
+              68
+            ],
+            "display_url": "pic.twitter.com/MK7iV92NnJ",
+            "expanded_url": "https://twitter.com/mlle_krawall/status/1144896680980045824/photo/1",
+            "url": "https://t.co/MK7iV92NnJ",
+            "id": 1144896675477098497,
+            "id_str": "1144896675477098497",
+            "media_url": "http://pbs.twimg.com/media/D-N9dd5WkAEFXEE.jpg",
+            "media_url_https": "https://pbs.twimg.com/media/D-N9dd5WkAEFXEE.jpg",
+            "source_status_id": 0,
+            "source_status_id_str": "",
+            "type": "photo",
+            "sizes": {
+              "thumb": {
+                "w": 150,
+                "h": 150,
+                "resize": "crop"
+              },
+              "large": {
+                "w": 738,
+                "h": 1163,
+                "resize": "fit"
+              },
+              "medium": {
+                "w": 738,
+                "h": 1163,
+                "resize": "fit"
+              },
+              "small": {
+                "w": 432,
+                "h": 680,
+                "resize": "fit"
+              }
+            },
+            "video_info": {
+              "aspect_ratio": [
+                0,
+                0
+              ],
+              "duration_millis": 0,
+              "variants": null
+            }
+          }
+        ],
+        "urls": [],
+        "user_mentions": []
+      },
+      "favorite_count": 562,
+      "favorited": false,
+      "filter_level": "",
+      "id": 1144896680980045824,
+      "id_str": "1144896680980045824",
+      "in_reply_to_screen_name": "",
+      "in_reply_to_status_id": 0,
+      "in_reply_to_status_id_str": "",
+      "in_reply_to_user_id": 0,
+      "in_reply_to_user_id_str": "",
+      "lang": "de",
+      "possibly_sensitive": false,
+      "quote_count": 0,
+      "reply_count": 0,
+      "retweet_count": 192,
+      "retweeted": false,
+      "retweeted_status": null,
+      "source": "\u003ca href=\"http://twitter.com/download/iphone\" rel=\"nofollow\"\u003eTwitter for iPhone\u003c/a\u003e",
+      "scopes": null,
+      "text": "",
+      "full_text": "Unterdessen in der deutschen Wikipedia. 🤦‍♀️ https://t.co/MK7iV92NnJ",
+      "display_text_range": [
+        0,
+        44
+      ],
+      "place": null,
+      "truncated": false,
+      "user": {
+        "contributors_enabled": false,
+        "created_at": "Sun Dec 07 02:05:41 +0000 2008",
+        "default_profile": false,
+        "default_profile_image": false,
+        "description": "Journalistin \u0026 Digitalstrategin. Socialmedia @ rbb. Früher: @tagesschau. 📸: @goetzg",
+        "email": "",
+        "entities": {
+          "url": {
+            "hashtags": null,
+            "media": null,
+            "urls": [
+              {
+                "indices": [
+                  0,
+                  23
+                ],
+                "display_url": "rbb24.de",
+                "expanded_url": "http://www.rbb24.de",
+                "url": "https://t.co/r953vsDpqP"
+              }
+            ],
+            "user_mentions": null
+          },
+          "description": {
+            "hashtags": null,
+            "media": null,
+            "urls": [],
+            "user_mentions": null
+          }
+        },
+        "favourites_count": 35520,
+        "follow_request_sent": false,
+        "following": false,
+        "followers_count": 9663,
+        "friends_count": 1186,
+        "geo_enabled": true,
+        "id": 17933732,
+        "id_str": "17933732",
+        "is_translator": false,
+        "lang": "",
+        "listed_count": 290,
+        "location": "Potsdam, Berlin, St. Pauli",
+        "name": "Anna-Mareike Krause",
+        "notifications": false,
+        "profile_background_color": "FCFCFC",
+        "profile_background_image_url": "http://abs.twimg.com/images/themes/theme1/bg.png",
+        "profile_background_image_url_https": "https://abs.twimg.com/images/themes/theme1/bg.png",
+        "profile_background_tile": false,
+        "profile_banner_url": "https://pbs.twimg.com/profile_banners/17933732/1360841897",
+        "profile_image_url": "http://pbs.twimg.com/profile_images/1112436715845832704/lqbL673s_normal.jpg",
+        "profile_image_url_https": "https://pbs.twimg.com/profile_images/1112436715845832704/lqbL673s_normal.jpg",
+        "profile_link_color": "5C7A82",
+        "profile_sidebar_border_color": "080A08",
+        "profile_sidebar_fill_color": "FCFCFC",
+        "profile_text_color": "333333",
+        "profile_use_background_image": false,
+        "protected": false,
+        "screen_name": "mlle_krawall",
+        "show_all_inline_media": false,
+        "status": null,
+        "statuses_count": 9107,
+        "time_zone": "",
+        "url": "https://t.co/r953vsDpqP",
+        "utc_offset": 0,
+        "verified": true,
+        "withheld_in_countries": null,
+        "withheld_scope": ""
+      },
+      "withheld_copyright": false,
+      "withheld_in_countries": null,
+      "withheld_scope": "",
+      "extended_entities": {
+        "media": [
+          {
+            "indices": [
+              45,
+              68
+            ],
+            "display_url": "pic.twitter.com/MK7iV92NnJ",
+            "expanded_url": "https://twitter.com/mlle_krawall/status/1144896680980045824/photo/1",
+            "url": "https://t.co/MK7iV92NnJ",
+            "id": 1144896675477098497,
+            "id_str": "1144896675477098497",
+            "media_url": "http://pbs.twimg.com/media/D-N9dd5WkAEFXEE.jpg",
+            "media_url_https": "https://pbs.twimg.com/media/D-N9dd5WkAEFXEE.jpg",
+            "source_status_id": 0,
+            "source_status_id_str": "",
+            "type": "photo",
+            "sizes": {
+              "thumb": {
+                "w": 150,
+                "h": 150,
+                "resize": "crop"
+              },
+              "large": {
+                "w": 738,
+                "h": 1163,
+                "resize": "fit"
+              },
+              "medium": {
+                "w": 738,
+                "h": 1163,
+                "resize": "fit"
+              },
+              "small": {
+                "w": 432,
+                "h": 680,
+                "resize": "fit"
+              }
+            },
+            "video_info": {
+              "aspect_ratio": [
+                0,
+                0
+              ],
+              "duration_millis": 0,
+              "variants": null
+            }
+          }
+        ]
+      },
+      "extended_tweet": null,
+      "quoted_status_id": 0,
+      "quoted_status_id_str": "",
+      "quoted_status": null
+    }
+  }

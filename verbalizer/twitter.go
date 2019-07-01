@@ -2,9 +2,13 @@ package verbalizer
 
 import (
 	"bytes"
+	"errors"
+	"fmt"
 	"io/ioutil"
 	"net/http"
 	"net/url"
+	"regexp"
+	"strconv"
 	"strings"
 
 	"encoding/xml"
@@ -39,7 +43,7 @@ func (t *Twitter) Show(id int64) (string, error) {
 	if e != nil {
 		return "", e
 	}
-	verbalized, e := verbalizedTweet(tweet)
+	verbalized, e := t.verbalizedTweet(tweet)
 	if e != nil {
 		return "", e
 	}
@@ -55,17 +59,24 @@ func (t *Twitter) HomeTimeline() (string, error) {
 		return "", e
 	}
 	timeline := ""
+	var errs []error
 	for _, tweet := range tweets {
-		verbalized, e := verbalizedTweet(&tweet)
+		verbalized, e := t.verbalizedTweet(&tweet)
 		if e != nil {
-			return "", e
+			errs = append(errs, e)
+			// TODO log issue
+			continue
 		}
 		timeline += verbalized + `<break time="1300ms"/>`
+	}
+	if timeline == "" {
+		return "", fmt.Errorf("One or more errors while verbalizing tweets from home timeline: %#v", errs)
 	}
 	return timeline, nil
 }
 
-func verbalizedTweet(tweet *twitter.Tweet) (string, error) {
+func (t *Twitter) verbalizedTweet(tweet *twitter.Tweet) (string, error) {
+
 	retweeted := false
 	var retweeter string
 	if tweet.RetweetedStatus != nil {
@@ -74,12 +85,15 @@ func verbalizedTweet(tweet *twitter.Tweet) (string, error) {
 		retweeted = true
 	}
 	text := tweet.FullText
+
 	attachment := ""
 	for _, mediaEntity := range tweet.Entities.Media {
-		if mediaEntity.Indices.End() == len(text) {
-			text = strings.Replace(text, mediaEntity.URL, "", 1)
-			attachment = `<break strength="strong"/>Angehängt zum Tweet ist ein Bild.`
-		}
+		text = strings.TrimRight(strings.Replace(text, mediaEntity.URL, "", 1), " .,")
+	}
+	if len(tweet.Entities.Media) == 1 {
+		attachment += `<break strength="strong"/>Angehängt zum Tweet ist ein Bild`
+	} else if len(tweet.Entities.Media) > 1 {
+		attachment += `<break strength="strong"/>Angehängt zum Tweet sind mehrere Bilder`
 	}
 	text = xmlEscapeText(text)
 
@@ -94,19 +108,65 @@ func verbalizedTweet(tweet *twitter.Tweet) (string, error) {
 			continue
 		}
 
-		resp, e := http.Get(u.ExpandedURL)
+		if parsedURL.Hostname() == "twitter.com" {
+			fragments := regexp.MustCompile(`/.*/status/(\d+)`).FindStringSubmatch(parsedURL.Path)
+			if len(fragments) == 2 {
+				tweetID, e := strconv.ParseInt(fragments[1], 10, 64)
+				if e != nil {
+					// TODO: logger.Error(e)
+					continue
+				}
+				if tweetID == tweet.QuotedStatusID {
+					text = strings.ReplaceAll(text, u.URL, "")
+					continue
+				}
+				referencedTweet, resp, e := t.twitterStatusesClient.Show(tweetID, &twitter.StatusShowParams{TweetMode: "extended"})
+				if resp.StatusCode != http.StatusOK {
+					// TODO: logger.Error(e)
+					continue
+				}
+
+				verbalizedTweet, e := t.verbalizedTweet(referencedTweet)
+				if e != nil {
+					// TODO: logger.Error(e)
+					continue
+				}
+
+				text += "Tweet: " + verbalizedTweet
+			}
+		}
+
+		r, e := http.NewRequest("GET", u.ExpandedURL, nil)
+		if e != nil {
+			panic(e)
+		}
+		r.Header.Set("accept", "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8")
+		r.Header.Set("accept-language", "en-US,en;q=0.9,fr;q=0.8,ro;q=0.7,ru;q=0.6,la;q=0.5,pt;q=0.4,de;q=0.3")
+		r.Header.Set("cache-control", "max-age=0")
+		r.Header.Set("upgrade-insecure-requests", "1")
+		r.Header.Set("user-agent", "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/67.0.3396.99 Safari/537.36")
+		resp, e := http.DefaultClient.Do(r)
 		if e != nil {
 			// TODO: logger.Error(e)
+			fmt.Println("ERROR:", e)
 			continue
 		}
 		c, e := ioutil.ReadAll(resp.Body)
+		if e != nil {
+			panic(e)
+		}
 		resp.Body.Close()
 		title := xmlEscapeText(strings.ReplaceAll(getTitle(string(c)), "·", " "))
-		switch tweet.Lang {
-		case "en":
-			text = strings.Replace(text, u.URL, parsedURL.Hostname()+", title: \""+title+"\",", 1)
-		case "de":
-			text = strings.Replace(text, u.URL, parsedURL.Hostname()+", titel: \""+title+"\",", 1)
+		if strings.Index(text, u.URL)+len(u.URL) == len(text) {
+			attachment = attach(attachment, "Link zu "+parsedURL.Hostname()+", titel: \""+title+"\"")
+			text = strings.TrimRight(strings.Replace(text, u.URL, "", 1), " ,.")
+		} else {
+			switch tweet.Lang {
+			case "en":
+				text = strings.Replace(text, u.URL, parsedURL.Hostname()+", title: \""+title+"\",", 1)
+			case "de":
+				text = strings.Replace(text, u.URL, parsedURL.Hostname()+", titel: \""+title+"\",", 1)
+			}
 		}
 	}
 	for _, hashtag := range tweet.Entities.Hashtags {
@@ -114,21 +174,39 @@ func verbalizedTweet(tweet *twitter.Tweet) (string, error) {
 	}
 	switch tweet.Lang {
 	case "en":
-		text = `<lang xml:lang="en-US">` + text + "</lang>"
+		text = `<lang xml:lang="en-US"><voice name="Kendra">` + text + "</voice></lang>"
 	case "de":
 		text = `<lang xml:lang="de-DE">` + text + "</lang>"
 	}
 
+	if attachment != "" {
+		attachment += ". "
+	}
+	if tweet.QuotedStatus != nil {
+		verbalizedQuotedTweet, e := t.verbalizedTweet(tweet.QuotedStatus)
+		if e != nil {
+			return "", errors.New("Could not verbalize quoted tweet: " + e.Error())
+		}
+		return "Von " + xmlEscapeText(tweet.User.Name) + ": " + text + attachment + `<break strength="strong"/>Zitiert damit den Tweet ` + verbalizedQuotedTweet, nil
+	}
 	if retweeted {
 		return "Von " + xmlEscapeText(tweet.User.Name) + ", retweeted von " + xmlEscapeText(retweeter) + ": " + text + attachment, nil
 	}
-	return "Von " + xmlEscapeText(tweet.User.Name) + ": " + text, nil
+	return "Von " + xmlEscapeText(tweet.User.Name) + ": " + text + attachment, nil
+}
+
+func attach(a, b string) string {
+	if a != "" {
+		return a + " und ein " + b
+	} else {
+		return "<break strength=\"strong\"/>Angehängt zum Tweet ist ein " + b
+	}
 }
 
 func xmlEscapeText(text string) string {
 	var tempBuffer bytes.Buffer
 	xml.EscapeText(&tempBuffer, []byte(text))
-	return tempBuffer.String()
+	return strings.ReplaceAll(tempBuffer.String(), `&#xA;`, `<break strength="strong"/>`)
 }
 
 func getTitle(HTMLString string) (title string) {

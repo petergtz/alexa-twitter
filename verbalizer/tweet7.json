@@ -1,0 +1,229 @@
+{
+    "coordinates": null,
+    "created_at": "Sun Jun 30 18:57:51 +0000 2019",
+    "current_user_retweet": null,
+    "entities": {
+      "hashtags": [
+        {
+          "indices": [
+            55,
+            73
+          ],
+          "text": "FreeCarolaRackete"
+        }
+      ],
+      "media": [
+        {
+          "indices": [
+            274,
+            297
+          ],
+          "display_url": "pic.twitter.com/jarZQtefMY",
+          "expanded_url": "https://twitter.com/janboehm/status/1145406110343585800/photo/1",
+          "url": "https://t.co/jarZQtefMY",
+          "id": 1145406102156304385,
+          "id_str": "1145406102156304385",
+          "media_url": "http://pbs.twimg.com/media/D-VMyAKXYAEyZTy.jpg",
+          "media_url_https": "https://pbs.twimg.com/media/D-VMyAKXYAEyZTy.jpg",
+          "source_status_id": 0,
+          "source_status_id_str": "",
+          "type": "photo",
+          "sizes": {
+            "thumb": {
+              "w": 150,
+              "h": 150,
+              "resize": "crop"
+            },
+            "large": {
+              "w": 1125,
+              "h": 794,
+              "resize": "fit"
+            },
+            "medium": {
+              "w": 1125,
+              "h": 794,
+              "resize": "fit"
+            },
+            "small": {
+              "w": 680,
+              "h": 480,
+              "resize": "fit"
+            }
+          },
+          "video_info": {
+            "aspect_ratio": [
+              0,
+              0
+            ],
+            "duration_millis": 0,
+            "variants": null
+          }
+        }
+      ],
+      "urls": [
+        {
+          "indices": [
+            250,
+            273
+          ],
+          "display_url": "leetchi.com/c/leben-retten…",
+          "expanded_url": "http://www.leetchi.com/c/leben-retten-ist-kein-verbrechen-lasst-uns-die-seenotretter-retten",
+          "url": "https://t.co/e3NGn69AT4"
+        }
+      ],
+      "user_mentions": []
+    },
+    "favorite_count": 6225,
+    "favorited": false,
+    "filter_level": "",
+    "id": 1145406110343585800,
+    "id_str": "1145406110343585800",
+    "in_reply_to_screen_name": "",
+    "in_reply_to_status_id": 0,
+    "in_reply_to_status_id_str": "",
+    "in_reply_to_user_id": 0,
+    "in_reply_to_user_id_str": "",
+    "lang": "de",
+    "possibly_sensitive": false,
+    "quote_count": 0,
+    "reply_count": 0,
+    "retweet_count": 918,
+    "retweeted": false,
+    "retweeted_status": null,
+    "source": "\u003ca href=\"http://twitter.com/download/iphone\" rel=\"nofollow\"\u003eTwitter for iPhone\u003c/a\u003e",
+    "scopes": null,
+    "text": "",
+    "full_text": "In von 24 Stunden haben wir gemeinsam 618.216 EURO für #FreeCarolaRackete und die private Seenotrettung gesammelt.\n\nDas ist nicht nur dringend benötigtes Geld, sondern auch ein Signal – an die Lebensretter ✊️ und die politisch Verantwortlichen 🗽❤️😘\n\nhttps://t.co/e3NGn69AT4 https://t.co/jarZQtefMY",
+    "display_text_range": [
+      0,
+      273
+    ],
+    "place": null,
+    "truncated": false,
+    "user": {
+      "contributors_enabled": false,
+      "created_at": "Fri Jan 16 15:55:55 +0000 2009",
+      "default_profile": false,
+      "default_profile_image": false,
+      "description": "🇪🇺 / from the motherland of fun and laughter / customer service line +49 221 97581870",
+      "email": "",
+      "entities": {
+        "url": {
+          "hashtags": null,
+          "media": null,
+          "urls": [
+            {
+              "indices": [
+                0,
+                23
+              ],
+              "display_url": "leetchi.com/c/leben-retten…",
+              "expanded_url": "http://www.leetchi.com/c/leben-retten-ist-kein-verbrechen-lasst-uns-die-seenotretter-retten",
+              "url": "https://t.co/nuZ45duWzc"
+            }
+          ],
+          "user_mentions": null
+        },
+        "description": {
+          "hashtags": null,
+          "media": null,
+          "urls": [],
+          "user_mentions": null
+        }
+      },
+      "favourites_count": 20627,
+      "follow_request_sent": false,
+      "following": true,
+      "followers_count": 2120876,
+      "friends_count": 1253,
+      "geo_enabled": false,
+      "id": 19072286,
+      "id_str": "19072286",
+      "is_translator": false,
+      "lang": "",
+      "listed_count": 2612,
+      "location": "Berlin, Deutschland",
+      "name": "Jan Böhmermann 🤨",
+      "notifications": false,
+      "profile_background_color": "000000",
+      "profile_background_image_url": "http://abs.twimg.com/images/themes/theme14/bg.gif",
+      "profile_background_image_url_https": "https://abs.twimg.com/images/themes/theme14/bg.gif",
+      "profile_background_tile": false,
+      "profile_banner_url": "https://pbs.twimg.com/profile_banners/19072286/1558906670",
+      "profile_image_url": "http://pbs.twimg.com/profile_images/1132762791025270785/lsy78svk_normal.jpg",
+      "profile_image_url_https": "https://pbs.twimg.com/profile_images/1132762791025270785/lsy78svk_normal.jpg",
+      "profile_link_color": "ABB8C2",
+      "profile_sidebar_border_color": "000000",
+      "profile_sidebar_fill_color": "000000",
+      "profile_text_color": "000000",
+      "profile_use_background_image": false,
+      "protected": false,
+      "screen_name": "janboehm",
+      "show_all_inline_media": false,
+      "status": null,
+      "statuses_count": 22478,
+      "time_zone": "",
+      "url": "https://t.co/nuZ45duWzc",
+      "utc_offset": 0,
+      "verified": true,
+      "withheld_in_countries": null,
+      "withheld_scope": ""
+    },
+    "withheld_copyright": false,
+    "withheld_in_countries": null,
+    "withheld_scope": "",
+    "extended_entities": {
+      "media": [
+        {
+          "indices": [
+            274,
+            297
+          ],
+          "display_url": "pic.twitter.com/jarZQtefMY",
+          "expanded_url": "https://twitter.com/janboehm/status/1145406110343585800/photo/1",
+          "url": "https://t.co/jarZQtefMY",
+          "id": 1145406102156304385,
+          "id_str": "1145406102156304385",
+          "media_url": "http://pbs.twimg.com/media/D-VMyAKXYAEyZTy.jpg",
+          "media_url_https": "https://pbs.twimg.com/media/D-VMyAKXYAEyZTy.jpg",
+          "source_status_id": 0,
+          "source_status_id_str": "",
+          "type": "photo",
+          "sizes": {
+            "thumb": {
+              "w": 150,
+              "h": 150,
+              "resize": "crop"
+            },
+            "large": {
+              "w": 1125,
+              "h": 794,
+              "resize": "fit"
+            },
+            "medium": {
+              "w": 1125,
+              "h": 794,
+              "resize": "fit"
+            },
+            "small": {
+              "w": 680,
+              "h": 480,
+              "resize": "fit"
+            }
+          },
+          "video_info": {
+            "aspect_ratio": [
+              0,
+              0
+            ],
+            "duration_millis": 0,
+            "variants": null
+          }
+        }
+      ]
+    },
+    "extended_tweet": null,
+    "quoted_status_id": 0,
+    "quoted_status_id_str": "",
+    "quoted_status": null
+  }
