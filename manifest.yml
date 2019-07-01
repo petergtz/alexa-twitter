@@ -2,7 +2,7 @@
 applications:
 - name: alexa-twitter
   memory: 64M
-  instances: 1
+  instances: 3
   env:
     GOVERSION: go1.12.5
     GOPACKAGENAME: github.com/petergtz/alexa-twitter
